@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Samreen | My B.Tech Journey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .thumb {
+  height: auto;
+}
+.thumb img {
+  width: 100%;
+  height: auto;   /* maintain original ratio */
+  object-fit: contain; /* show full image */
+  background: #111;    /* add background for empty space */
+  padding: 5px;
+  border-radius: 10px;
+}
+
+    body {margin:0; font-family:Inter, sans-serif; background:#0b1020; color:#fff;}
+    .container{max-width:1100px; margin:auto; padding:20px;}
+    h2{margin-top:30px;}
+    .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:16px;}
+    .card{background:#121933; border-radius:12px; overflow:hidden; text-align:center; transition:.2s;}
+    .card:hover{transform:scale(1.02);}
+    /*.thumb{height:200px; overflow:hidden;}
+    .thumb img{width:100%; height:100%; object-fit:cover; display:block;}
+    .content{padding:12px;}*/
+    a{color:#7c9dff; text-decoration:none;}
+    a:hover{text-decoration:underline;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Samreen • My B.Tech Journey</h1>
+
+    <h2>Semester 1 Memories</h2>
+    <div class="grid">
+      <a href="details.html?id=interview" class="card">
+        <div class="thumb"><img src="interview.jpeg" height="200" width="300" alt="Interview"></div>
+        <div class="content">Interviewing an Expert</div>
+      </a>
+      
+      <a href="details.html?id=song" class="card">
+        <div class="thumb"><img src="pbhm.jpeg" height="45" width="32" alt="Fav Song"></div>
+        <div class="content">Favorite Song from Playlist</div>
+      </a>
+    
+      <a href="details.html?id=dance" class="card">
+        <div class="thumb"><img src="danceig.jpeg" alt="Dance"></div>
+        <div class="content">Traditional Day Dance</div>
+      </a>
+      <a href="details.html?id=singing" class="card">
+        <div class="thumb"><img src="sig.jpeg" alt="Singing"></div>
+        <div class="content">Sparkril Singing</div>
+      </a>
+      <a href="details.html?id=result1" class="card">
+        <div class="thumb"><img src="1st sem.jpeg" alt="Result"></div>
+        <div class="content">1st Semester Result</div>
+      </a>
+    </div>
+
+    <h2>Semester 2 Memories</h2>
+    <div class="grid">
+      <a href="details.html?id=presentation" class="card">
+        <div class="thumb"><img src="pp.jpeg" alt="Presentation"></div>
+        <div class="content">Presentation</div>
+      </a>
+      <a href="details.html?id=appreciation" class="card">
+        <div class="thumb"><img src="AS.jpeg" alt="Appreciation"></div>
+        <div class="content">Appreciation</div>
+      </a>
+      <a href="details.html?id=quiz" class="card">
+        <div class="thumb"><img src="quiz.jpeg" alt="Quiz"></div>
+        <div class="content">Library Day Quiz</div>
+      </a>
+      <a href="details.html?id=felicitation" class="card">
+        <div class="thumb"><img src="nit.jpeg" alt="Felicitated"></div>
+        <div class="content">Library Felicitation</div>
+      </a>
+      <a href="details.html?id=sports" class="card">
+        <div class="thumb"><img src="sports.jpeg" alt="Sports"></div>
+        <div class="content">Sports Certificate</div>
+      </a>
+      <a href="details.html?id=result2" class="card">
+        <div class="thumb"><img src="sem2.jpeg" alt="Semester 2 Result"></div>
+        <div class="content">2nd Semester Result</div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+<!-----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>B.Tech Journey | Samreen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin:0;
+      font-family:'Inter',sans-serif;
+      background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+      color:#fff;
+    }
+    .container {max-width:1200px;margin:auto;padding:30px;}
+    h1,h2{text-align:center;margin:30px 0;}
+    .grid {
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:20px;
+    }
+    .card {
+      background:rgba(255,255,255,0.08);
+      border-radius:16px;
+      backdrop-filter:blur(12px);
+      overflow:hidden;
+      transition:.3s;
+      box-shadow:0 8px 20px rgba(0,0,0,0.5);
+      cursor:pointer;
+    }
+    .card:hover {transform:translateY(-6px) scale(1.02);}
+    .thumb {height:220px;overflow:hidden;}
+    .thumb img {width:100%;height:100%;object-fit:cover;display:block;}
+    .content {padding:14px;text-align:center;font-weight:600;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📘 My B.Tech Journey</h1>
+
+    <h2>Semester 1</h2>
+    <div class="grid">
+      <div class="card" onclick="go('interview')">
+        <div class="thumb"><img src="interview.jpeg" alt="Interview"></div>
+        <div class="content">Interviewing an Expert</div>
+      </div>
+      <div class="card" onclick="go('song')">
+        <div class="thumb"><img src="pbhm.jpeg" alt="Song"></div>
+        <div class="content">Fav Song Reel</div>
+      </div>
+      <div class="card" onclick="go('result1')">
+        <div class="thumb"><img src="1st sem.jpeg" alt="Result 1"></div>
+        <div class="content">1st Semester Result</div>
+      </div>
+      <div class="card" onclick="go('dance')">
+        <div class="thumb"><img src="danceig.jpeg" alt="Dance"></div>
+        <div class="content">Traditional Day Dance</div>
+      </div>
+      <div class="card" onclick="go('singing')">
+        <div class="thumb"><img src="sig.jpeg" alt="Singing"></div>
+        <div class="content">Sparkril Singing</div>
+      </div>
+    </div>
+
+    <h2>Semester 2</h2>
+    <div class="grid">
+      <div class="card" onclick="go('presentation')">
+        <div class="thumb"><img src="pp.jpeg" alt="Presentation"></div>
+        <div class="content">Presentation</div>
+      </div>
+      <div class="card" onclick="go('appreciation')">
+        <div class="thumb"><img src="AS.jpeg" alt="Appreciation"></div>
+        <div class="content">Appreciation</div>
+      </div>
+      <div class="card" onclick="go('quiz')">
+        <div class="thumb"><img src="quiz.jpeg" alt="Quiz"></div>
+        <div class="content">Library Day Quiz</div>
+      </div>
+      <div class="card" onclick="go('felicitation')">
+        <div class="thumb"><img src="nit.jpeg" alt="Felicitation"></div>
+        <div class="content">Library Felicitation</div>
+      </div>
+      <div class="card" onclick="go('sports')">
+        <div class="thumb"><img src="sports.jpeg" alt="Sports"></div>
+        <div class="content">Sports Certificate</div>
+      </div>
+      <div class="card" onclick="go('result2')">
+        <div class="thumb"><img src="sem2.jpeg" alt="Result 2"></div>
+        <div class="content">2nd Semester Result</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function go(id){
+      window.location.href="details.html?id="+id;
+    }
+  </script>
+</body>
+</html>
+------->

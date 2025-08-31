@@ -1,0 +1,314 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Details | Samreen Journey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .controls {
+  margin: 20px 0;
+  text-align: center;
+}
+
+button {
+  background: linear-gradient(135deg,#6a5acd,#1e90ff);
+  border: none;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  margin: 0 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(0,0,0,.3);
+  transition: all .2s ease;
+}
+button:hover {
+  background: linear-gradient(135deg,#1e90ff,#6a5acd);
+  transform: scale(1.05);
+}
+
+#link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  background: linear-gradient(135deg,#ff5f6d,#ffc371);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.3);
+  transition: all .2s ease;
+}
+#link:hover {
+  background: linear-gradient(135deg,#ffc371,#ff5f6d);
+  transform: scale(1.05);
+}
+
+  body {
+    margin:0; font-family:Inter,sans-serif; background:#0b1020; color:#fff;
+    background-size:cover; background-position:center;
+  }
+  .container {max-width:900px; margin:auto; padding:20px;}
+  .carousel {position:relative; text-align:center;}
+  .carousel img {display:none; max-width:100%; border-radius:12px; box-shadow:0 4px 20px rgba(0,0,0,.5);}
+  .carousel img.active {display:block; margin:auto;}
+  .caption {margin-top:8px; font-size:14px; color:#ccc;}
+  .controls {margin-top:10px; text-align:center;}
+  button {background:#121933; border:none; color:#fff; padding:10px 16px; border-radius:8px; margin:0 5px; cursor:pointer;}
+  button:hover {background:#1c2857;}
+</style>
+
+</head>
+<body>
+  <div class="container">
+    <a href="btech.html">← Back</a>
+    <h1 id="title"></h1>
+    <div class="carousel" id="carousel"></div>
+    <div class="controls" id="controls"></div>
+    <p id="desc"></p>
+    <p><a id="link" href="#" target="_blank"></a></p>
+  </div>
+
+  
+    <script>
+     
+
+  const data = {
+    interview:{title:"Interviewing an Expert", imgs:["interview.jpeg"], captions:["During expert interview"], desc:"Memorable interview with expert.", sem:"sem1"},
+    team:{title:"Team Interview", imgs:["team in.jpeg"], captions:["With my team"], desc:"Team collaboration during interview.", sem:"sem1"},
+    song:{title:"Favorite Song from Playlist", imgs:["pbhm.jpeg"], captions:["Playing fav song"], desc:"Shared fav song.", sem:"sem1", link:"https://www.instagram.com/reel/DCHSdp_KPKN/?igsh=dnRwZzZpcGdhaGI5"},
+    result1:{title:"1st Semester Result", imgs:["1st sem.jpeg"], captions:["My result screenshot"], desc:"My 1st semester result achievement.", sem:"sem1"},
+    dance:{title:"Traditional Day Dance", imgs:["danceig.jpeg"], captions:["On stage performing"], desc:"Dance performance on traditional day.", sem:"sem1", link:"https://www.instagram.com/p/DAu0L3BTMlI/?img_index=6&igsh=dThjbGFtZmdpMXM4"},
+    singing:{title:"Sparkril Singing", imgs:["sig.jpeg","sparkril.jpeg","ss.jpeg"], captions:["During quiz finals","Singing on stage","With my friends"], desc:"Singing event at Sparkril.", sem:"sem1", link:"https://www.instagram.com/p/DFXhLwuTStf/?img_index=9&igsh=MXBoZ2IxZjRoMnJlbA=="},
+
+    presentation:{title:"Presentation", imgs:["pp.jpeg","pp2.jpeg"], captions:["Presenting to class","Slide discussion"], desc:"College presentation.", sem:"sem2"},
+    appreciation:{title:"Appreciation", imgs:["AS.jpeg","AS2.jpeg"], captions:["Receiving appreciation","Certificate snapshot"], desc:"Received appreciation for presentation.", sem:"sem2"},
+    quiz:{title:"Library Day Quiz", imgs:["quiz.jpeg","lmcc.jpeg","won.jpeg"], captions:["Quiz participation","Teamwork","Winning moment"], desc:"Library day quiz competition.", sem:"sem2"},
+    felicitation:{title:"Library Felicitation", imgs:["nit.jpeg"], captions:["With chief guest"], desc:"Felicitated by Library Chair.", sem:"sem2"},
+    sports:{title:"Sports Certificate", imgs:["sports.jpeg"], captions:["My sports achievement"], desc:"Sports event participation.", sem:"sem2"},
+    result2:{title:"2nd Semester Result", imgs:["sem2.jpeg"], captions:["Final mark sheet"], desc:"My 2nd semester result achievement.", sem:"sem2"}
+  };
+
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  const item = data[id];
+
+  if(item){
+    // background for sem2
+    if(item.sem==="sem2"){document.body.style.backgroundImage="url('canteen.jpeg')";}
+
+    document.getElementById("title").textContent = item.title;
+    document.getElementById("desc").textContent = item.desc;
+
+    if(item.link){
+      document.getElementById("link").textContent = "View More";
+      document.getElementById("link").href = item.link;
+    } else {
+      document.getElementById("link").style.display="none";
+    }
+
+    const carousel = document.getElementById("carousel");
+    item.imgs.forEach((src,i)=>{
+      const wrapper=document.createElement("div");
+      const img=document.createElement("img");
+      img.src=src; img.alt=item.title;
+      if(i===0) img.classList.add("active");
+      const cap=document.createElement("div");
+      cap.className="caption";
+      cap.textContent=item.captions[i]||"";
+      wrapper.appendChild(img);
+      wrapper.appendChild(cap);
+      carousel.appendChild(wrapper);
+    });
+
+    if(item.imgs.length>1){
+      const controls=document.getElementById("controls");
+      let idx=0;
+      const wrappers=carousel.querySelectorAll("div");
+      function show(i){wrappers.forEach((w,j)=>w.querySelector("img").classList.toggle("active",j===i));}
+      const prev=document.createElement("button"); prev.textContent="← Prev";
+      const next=document.createElement("button"); next.textContent="Next →";
+      prev.onclick=()=>{idx=(idx-1+wrappers.length)%wrappers.length; show(idx);};
+      next.onclick=()=>{idx=(idx+1)%wrappers.length; show(idx);};
+      controls.appendChild(prev); controls.appendChild(next);
+    }
+  }
+</script>
+
+    <!--const data = {
+      interview:{title:"Interviewing an Expert", imgs:["interview.jpeg"], desc:"Memorable interview with expert.", link:""},
+      team:{title:"Team Interview", imgs:["team in.jpeg"], desc:"Team collaboration during interview.", link:""},
+      song:{title:"Favorite Song from Playlist", imgs:["pbhm.jpeg"], desc:"Shared fav song.", link:"https://www.instagram.com/reel/DCHSdp_KPKN/?igsh=dnRwZzZpcGdhaGI5"},
+      result1:{title:"1st Semester Result", imgs:["1st sem.jpeg"], desc:"My 1st semester result achievement.", link:""},
+      dance:{title:"Traditional Day Dance", imgs:["danceig.jpeg"], desc:"Dance performance on traditional day.", link:"https://www.instagram.com/p/DAu0L3BTMlI/?img_index=6&igsh=dThjbGFtZmdpMXM4"},
+      singing:{title:"Sparkril Singing", imgs:["sig.jpeg","sparkril.jpeg","ss.jpeg"], desc:"Singing event at Sparkril.", link:"https://www.instagram.com/p/DFXhLwuTStf/?img_index=9&igsh=MXBoZ2IxZjRoMnJlbA=="},
+      presentation:{title:"Presentation", imgs:["pp.jpeg","pp2.jpeg"], desc:"College presentation.", link:""},
+      appreciation:{title:"Appreciation", imgs:["AS.jpeg","AS2.jpeg"], desc:"Received appreciation for presentation.", link:""},
+      quiz:{title:"Library Day Quiz", imgs:["quiz.jpeg","lmcc.jpeg","won.jpeg"], desc:"Library day quiz competition.", link:""},
+      felicitation:{title:"Library Felicitation", imgs:["nit.jpeg"], desc:"Felicitated by Library Chair.", link:""},
+      sports:{title:"Sports Certificate", imgs:["sports.jpeg"], desc:"Sports event participation.", link:""},
+      result2:{title:"2nd Semester Result", imgs:["sem2.jpeg"], desc:"My 2nd semester result achievement.", link:""}
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const item = data[id];
+
+    if(item){
+      document.getElementById("title").textContent = item.title;
+      document.getElementById("desc").textContent = item.desc;
+      if(item.link){
+        document.getElementById("link").textContent = "View More";
+        document.getElementById("link").href = item.link;
+      } else {
+        document.getElementById("link").style.display="none";
+      }
+
+      const carousel = document.getElementById("carousel");
+      item.imgs.forEach((src,i)=>{
+        const img=document.createElement("img");
+        img.src=src; img.alt=item.title; if(i===0) img.classList.add("active");
+        carousel.appendChild(img);
+      });
+
+      if(item.imgs.length>1){
+        const controls=document.getElementById("controls");
+        let idx=0;
+        const imgs=carousel.querySelectorAll("img");
+        function show(i){imgs.forEach(im=>im.classList.remove("active")); imgs[i].classList.add("active");}
+        const prev=document.createElement("button"); prev.textContent="← Prev";
+        const next=document.createElement("button"); next.textContent="Next →";
+        prev.onclick=()=>{idx=(idx-1+imgs.length)%imgs.length; show(idx);};
+        next.onclick=()=>{idx=(idx+1)%imgs.length; show(idx);};
+        controls.appendChild(prev); controls.appendChild(next);
+      }
+    }-->
+  
+</body>
+</html>
+
+<!----<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Details | B.Tech Journey</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin:0;
+      font-family:'Inter',sans-serif;
+      color:#fff;
+      background:#0b1020;
+    }
+    .overlay {background:rgba(0,0,0,0.7);min-height:100vh;padding:20px;}
+    .container {
+      max-width:1000px;
+      margin:auto;
+      padding:20px;
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(12px);
+      border-radius:16px;
+      box-shadow:0 8px 20px rgba(0,0,0,.5);
+    }
+    a {color:#7c9dff;text-decoration:none;}
+    h1{text-align:center;margin:20px 0;}
+    .carousel {position:relative;text-align:center;}
+    .carousel img {width:100%;border-radius:12px;display:none;object-fit:contain;}
+    .carousel img.active {display:block;}
+    .caption {margin-top:10px;font-style:italic;}
+    .controls {text-align:center;margin:12px;}
+    button {background:#121933;border:none;color:#fff;padding:10px 18px;border-radius:8px;cursor:pointer;transition:.2s;}
+    button:hover {background:#1c2857;}
+  </style>
+</head>
+<body>
+  <div class="overlay">
+    <div class="container">
+      <a href="index.html">← Back</a>
+      <h1 id="title"></h1>
+      <div class="carousel" id="carousel"></div>
+      <p class="caption" id="caption"></p>
+      <div class="controls" id="controls"></div>
+      <p id="desc"></p>
+      <p><a id="link" href="#" target="_blank"></a></p>
+    </div>
+  </div>
+
+  <script>
+    const data = {
+      interview:{title:"Interviewing an Expert",imgs:[{src:"interview.jpeg",caption:"During expert interview"}],desc:"Memorable interview.",bg:""},
+      song:{title:"Favorite Song Reel",imgs:[{src:"pbhm.jpeg",caption:"IG reel"}],desc:"Fav song from playlist.",link:"https://www.instagram.com/reel/DCHSdp_KPKN/?igsh=dnRwZzZpcGdhaGI5"},
+      result1:{title:"1st Semester Result",imgs:[{src:"1st sem.jpeg",caption:"CGPA Certificate"}],desc:"My 1st semester result achievement."},
+      dance:{title:"Traditional Day Dance",imgs:[{src:"danceig.jpeg",caption:"Performance on stage"}],desc:"Dance performance.",link:"https://www.instagram.com/p/DAu0L3BTMlI/?img_index=6"},
+      singing:{title:"Sparkril Singing",imgs:[
+        {src:"sig.jpeg",caption:"Singing performance start"},
+        {src:"sparkril.jpeg",caption:"On stage full energy"},
+        {src:"ss.jpeg",caption:"With teammates"}
+      ],desc:"Singing at Sparkril.",link:"https://www.instagram.com/p/DFXhLwuTStf/?img_index=9"},
+      presentation:{title:"Presentation",imgs:[
+        {src:"pp.jpeg",caption:"During college presentation"},
+        {src:"pp2.jpeg",caption:"Presenting slides"}
+      ],desc:"Our group presentation.",bg:"canteen.jpeg"},
+      appreciation:{title:"Appreciation",imgs:[
+        {src:"AS.jpeg",caption:"Receiving appreciation"},
+        {src:"AS2.jpeg",caption:"With certificate"}
+      ],desc:"Got appreciated for presentation.",bg:"canteen.jpeg"},
+      quiz:{title:"Library Day Quiz",imgs:[
+        {src:"quiz.jpeg",caption:"During quiz finals"},
+        {src:"lmcc.jpeg",caption:"Winners photo"},
+        {src:"won.jpeg",caption:"Holding trophy"}
+      ],desc:"Quiz competition.",bg:"canteen.jpeg"},
+      felicitation:{title:"Library Felicitation",imgs:[{src:"nit.jpeg",caption:"Felicitation by Chair"}],desc:"Library chair felicitation.",bg:"canteen.jpeg"},
+      sports:{title:"Sports Certificate",imgs:[{src:"sports.jpeg",caption:"Sports achievement"}],desc:"Sports event certificate.",bg:"canteen.jpeg"},
+      result2:{title:"2nd Semester Result",imgs:[{src:"sem2.jpeg",caption:"CGPA Semester 2"}],desc:"My 2nd semester result.",bg:"canteen.jpeg"},
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const item = data[id];
+
+    if(item){
+      if(item.bg) document.body.style.background = `url(${item.bg}) center/cover fixed no-repeat`;
+      document.getElementById("title").textContent = item.title;
+      document.getElementById("desc").textContent = item.desc;
+
+      if(item.link){
+        document.getElementById("link").textContent = "View More";
+        document.getElementById("link").href = item.link;
+      } else {
+        document.getElementById("link").style.display="none";
+      }
+
+      const carousel = document.getElementById("carousel");
+      const caption = document.getElementById("caption");
+      item.imgs.forEach((obj,i)=>{
+        const img=document.createElement("img");
+        img.src=obj.src; img.alt=item.title;
+        if(i===0){img.classList.add("active");caption.textContent=obj.caption;}
+        carousel.appendChild(img);
+      });
+
+      if(item.imgs.length>1){
+        const controls=document.getElementById("controls");
+        let idx=0;
+        const imgs=carousel.querySelectorAll("img");
+        function show(i){
+          imgs.forEach(im=>im.classList.remove("active"));
+          imgs[i].classList.add("active");
+          caption.textContent=item.imgs[i].caption;
+        }
+        const prev=document.createElement("button"); prev.textContent="← Prev";
+        const next=document.createElement("button"); next.textContent="Next →";
+        prev.onclick=()=>{idx=(idx-1+imgs.length)%imgs.length;show(idx);};
+        next.onclick=()=>{idx=(idx+1)%imgs.length;show(idx);};
+        controls.appendChild(prev); controls.appendChild(next);
+      }
+    }
+  </script>
+</body>
+</html>--->
