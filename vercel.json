@@ -1,5 +1,13 @@
 {
+  "cleanUrls": true,
   "rewrites": [
-    { "source": "/details", "destination": "/details.html" }
+    {
+      "source": "/details",
+      "destination": "/details.html"
+    },
+    {
+      "source": "/details/:match*",
+      "destination": "/details.html"
+    }
   ]
 }
